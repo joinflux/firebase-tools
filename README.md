@@ -7,11 +7,14 @@ a node environment with with firebase-tools installed and ready to be consumed.
 ## Using
 
 To use this action, make sure to refer to: `joinflux/firebase-action`
-We also try to release tagged version that you can refer to:
+
+We also try to release tagged versions that you can refer to:
 `joinflux/firebase-action@v9.16.0`
-Alternatevely, refer to `master` to get the most up to date version. However
+
+Alternatively, refer to `master` to get the most up to date version. However
 plese be aware that there might be unstable: `joinflux/firebase-action@master`
 
+### Complete Example
 ```
   - name: Deploy to Firebase
     uses: joinflux/firebase-action@v9.16.0
