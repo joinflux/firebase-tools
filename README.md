@@ -4,6 +4,27 @@ This Action for [firebase-tools](https://github.com/firebase/firebase-tools)
 enables arbitrary actions with the `firebase` command-line client and it provides
 a node environment with with firebase-tools installed and ready to be consumed.
 
+## Using
+
+To use this action, make sure to refer to: `joinflux/firebase-tools`
+
+We also try to release tagged versions that you can refer to:
+`joinflux/firebase-tools@v9.16.0`
+
+Alternatively, refer to `master` to get the most up to date version. However
+plese be aware that it might be unstable: `joinflux/firebase-tools@master`
+
+### Complete Example
+```
+  - name: Deploy to Firebase
+    uses: joinflux/firebase-tools@v9.16.0
+    with:
+      args: deploy --only hosting
+    env:
+      FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+```
+
+
 ## Inputs
 
 * `args` - **Required**. This is the arguments you want to use for the `firebase` cli
@@ -69,7 +90,7 @@ jobs:
           name: dist
           path: dist
       - name: Deploy to Firebase
-        uses: joinflux/firebase-action@master
+        uses: joinflux/firebase-tools@master
         with:
           args: deploy --only hosting
         env:
@@ -106,7 +127,7 @@ const firebase = require("firebase-tools")
 
 ```yaml
       - name: Run script
-        uses: joinflux/firebase-action@9.16.0
+        uses: joinflux/firebase-tools@v9.16.0
         with:
           args: "./my-script.sh"
         env:
