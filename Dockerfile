@@ -7,7 +7,7 @@ LABEL com.github.actions.description="Wraps the firebase-tools CLI to enable com
 LABEL com.github.actions.icon="package"
 LABEL com.github.actions.color="gray-dark"
 
-ARG FIREBASE_VERSION=10.7.0
+ARG FIREBASE_VERSION=11.2.2
 RUN npm i -g firebase-tools@${FIREBASE_VERSION}
 
 COPY LICENSE README.md /
