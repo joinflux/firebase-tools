@@ -1,9 +1,9 @@
-name: 'firebase-tools'
-author: 'Gustavo Hoirisch'
-description: 'Wraps the firebase-tools CLI to enable common commands or to be used in a script.'
+name: "firebase-tools"
+author: "Gustavo Hoirisch"
+description: "Wraps the firebase-tools CLI to enable common commands or to be used in a script."
 branding:
-  icon: 'package'
-  color: 'gray-dark'
+  icon: "package"
+  color: "gray-dark"
 runs:
-  using: 'docker'
-  image: 'docker://joinflux/firebase-action:9.16.0'
+  using: "docker"
+  image: "docker://joinflux/firebase-action:14.6.0"
