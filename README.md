@@ -9,21 +9,21 @@ a node environment with with firebase-tools installed and ready to be consumed.
 To use this action, make sure to refer to: `joinflux/firebase-tools`
 
 We also try to release tagged versions that you can refer to:
-`joinflux/firebase-tools@v9.16.0`
+`joinflux/firebase-tools@v14.6.0`
 
 Alternatively, refer to `master` to get the most up to date version. However
-plese be aware that it might be unstable: `joinflux/firebase-tools@master`
+please be aware that it might be unstable: `joinflux/firebase-tools@master`
 
 ### Complete Example
+
 ```
   - name: Deploy to Firebase
-    uses: joinflux/firebase-tools@v9.16.0
+    uses: joinflux/firebase-tools@v14.6.0
     with:
       args: deploy --only hosting
     env:
       FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
 ```
-
 
 ## Inputs
 
@@ -96,6 +96,7 @@ jobs:
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
 ```
+
 Alternatively:
 
 ```yaml
@@ -103,8 +104,7 @@ Alternatively:
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
 ```
 
-
-If you have multiple hosting environments you can specify which one in the args line. 
+If you have multiple hosting environments you can specify which one in the args line.
 e.g. `args: deploy --only hosting:[environment name]`
 
 If you want to add a message to a deployment (e.g. the Git commit message) you need to take extra care and escape the quotes or the YAML breaks.
@@ -127,7 +127,7 @@ const firebase = require("firebase-tools")
 
 ```yaml
       - name: Run script
-        uses: joinflux/firebase-tools@v9.16.0
+        uses: joinflux/firebase-tools@v14.6.0
         with:
           args: "./my-script.sh"
         env:
@@ -137,7 +137,6 @@ const firebase = require("firebase-tools")
 ## License
 
 The Dockerfile and associated scripts and documentation in this project are released under the [MIT License](LICENSE).
-
 
 ### Recommendation
 
