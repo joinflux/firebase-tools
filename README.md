@@ -12,7 +12,7 @@ We also try to release tagged versions that you can refer to:
 `joinflux/firebase-tools@v14.6.0`
 
 Alternatively, refer to `master` to get the most up to date version. However
-plese be aware that it might be unstable: `joinflux/firebase-tools@master`
+please be aware that it might be unstable: `joinflux/firebase-tools@master`
 
 ### Complete Example
 
