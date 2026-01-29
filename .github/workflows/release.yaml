@@ -10,6 +10,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
       - id: meta
         uses: docker/metadata-action@v3
         with:
@@ -17,11 +22,6 @@ jobs:
           tags: |
             type=semver,pattern={{version}}
             type=sha
-
-      - uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKER_HUB_USERNAME }}
-          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
       - uses: docker/build-push-action@v6
         with:
@@ -32,12 +32,22 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
+      - id: meta-alpine
+        uses: docker/metadata-action@v3
+        with:
+          images: joinflux/firebase-action
+          flavor: |
+            suffix=-alpine
+          tags: |
+            type=semver,pattern={{version}}
+            type=sha
+
       - uses: docker/build-push-action@v6
         with:
           context: .
           file: Dockerfile.alpine
           build-args: |
-            FIREBASE_VERSION=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.version'] }}
+            FIREBASE_VERSION=${{ fromJSON(steps.meta-alpine.outputs.json).labels['org.opencontainers.image.version'] }}
           push: true
-          tags: ${{ steps.meta.outputs.tags }}-alpine
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta-alpine.outputs.tags }}
+          labels: ${{ steps.meta-alpine.outputs.labels }}
