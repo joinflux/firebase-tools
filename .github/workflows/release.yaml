@@ -47,7 +47,7 @@ jobs:
           context: .
           file: Dockerfile.alpine
           build-args: |
-            FIREBASE_VERSION=${{ fromJSON(steps.meta-alpine.outputs.json).labels['org.opencontainers.image.version'] }}
+            FIREBASE_VERSION=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.version'] }}
           push: true
           tags: ${{ steps.meta-alpine.outputs.tags }}
           labels: ${{ steps.meta-alpine.outputs.labels }}
