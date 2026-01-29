@@ -41,6 +41,7 @@ jobs:
           build-args: |
             FIREBASE_VERSION=15.4.0
           push: false
+          load: true
           tags: joinflux/firebase-action:test${{ matrix.suffix }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
