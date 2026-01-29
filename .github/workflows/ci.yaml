@@ -39,7 +39,7 @@ jobs:
           context: .
           file: ${{ matrix.dockerfile }}
           build-args: |
-            FIREBASE_VERSION=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.version'] || '15.4.0' }}
+            FIREBASE_VERSION='15.4.0'
           push: false
           tags: joinflux/firebase-action:test${{ matrix.suffix }}
           cache-from: type=gha
