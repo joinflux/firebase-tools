@@ -1,0 +1,37 @@
+name: Auto Release on Firebase Tools Update
+
+on:
+  schedule:
+    # Check for new firebase-tools versions every Monday at 9 AM UTC
+    - cron: '0 9 * * 1'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  check-and-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get latest firebase-tools version from npm
+        id: npm-version
+        run: .github/scripts/get-npm-version.sh
+
+      - name: Get latest release version from this repo
+        id: repo-version
+        run: .github/scripts/get-repo-version.sh
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Compare versions and create release
+        id: create-release
+        run: |
+          .github/scripts/create-release.sh \
+            "${{ steps.npm-version.outputs.latest }}" \
+            "${{ steps.repo-version.outputs.latest }}"
+        env:
+          GH_TOKEN: ${{ github.token }}
