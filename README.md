@@ -9,7 +9,7 @@ a node environment with with firebase-tools installed and ready to be consumed.
 To use this action, make sure to refer to: `joinflux/firebase-tools`
 
 We also try to release tagged versions that you can refer to:
-`joinflux/firebase-tools@v14.6.0`
+`joinflux/firebase-tools@v15.4.0`
 
 Alternatively, refer to `master` to get the most up to date version. However
 plese be aware that it might be unstable: `joinflux/firebase-tools@master`
@@ -18,7 +18,7 @@ plese be aware that it might be unstable: `joinflux/firebase-tools@master`
 
 ```
   - name: Deploy to Firebase
-    uses: joinflux/firebase-tools@v14.6.0
+    uses: joinflux/firebase-tools@v15.4.0
     with:
       args: deploy --only hosting
     env:
@@ -127,7 +127,7 @@ const firebase = require("firebase-tools")
 
 ```yaml
       - name: Run script
-        uses: joinflux/firebase-tools@v14.6.0
+        uses: joinflux/firebase-tools@v15.4.0
         with:
           args: "./my-script.sh"
         env:
