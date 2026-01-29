@@ -48,4 +48,4 @@ jobs:
 
       - name: Test ${{ matrix.name }} Docker image
         run: |
-          docker run --rm joinflux/firebase-action:test${{ matrix.suffix }} --version
+          docker run --rm -e FIREBASE_TOKEN=fake-token joinflux/firebase-action:test${{ matrix.suffix }} --version
