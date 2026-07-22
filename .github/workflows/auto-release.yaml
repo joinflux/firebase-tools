@@ -11,7 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    
+    outputs:
+      created: ${{ steps.create-release.outputs.created }}
+      version: ${{ steps.create-release.outputs.version }}
+
     steps:
       - uses: actions/checkout@v4
         with:
@@ -35,3 +38,11 @@ jobs:
             "${{ steps.repo-version.outputs.latest }}"
         env:
           GH_TOKEN: ${{ github.token }}
+
+  build:
+    needs: check-and-release
+    if: needs.check-and-release.outputs.created == 'true'
+    uses: ./.github/workflows/release.yaml
+    with:
+      version: ${{ needs.check-and-release.outputs.version }}
+    secrets: inherit
