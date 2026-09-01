@@ -3,7 +3,7 @@ name: Release
 on:
   release:
     types: [released]
-  workflow_call: # Called by auto-release after it creates a release (GITHUB_TOKEN-created releases don't fire the `release` event)
+  workflow_call: # Called by auto-release before it creates a release (GITHUB_TOKEN-created releases don't fire the `release` event)
     inputs:
       version:
         description: firebase-tools version to build (without leading v)
