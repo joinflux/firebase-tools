@@ -10,7 +10,17 @@ echo "  repo: $REPO_VERSION"
 
 if [ "$NPM_VERSION" != "$REPO_VERSION" ]; then
   echo "New version detected! Creating release for v$NPM_VERSION"
-  
+
+  # Commit the version pins so the release tag references the matching Docker image
+  sed -i -E "s|image: \"docker://joinflux/firebase-action:[^\"]+\"|image: \"docker://joinflux/firebase-action:${NPM_VERSION}\"|" action.yaml
+  sed -i -E "s|^ARG FIREBASE_VERSION=.*|ARG FIREBASE_VERSION=${NPM_VERSION}|" Dockerfile Dockerfile.alpine
+
+  git config user.name "github-actions[bot]"
+  git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+  git add action.yaml Dockerfile Dockerfile.alpine
+  git commit -m "chore: release v${NPM_VERSION}"
+  git push origin HEAD:master
+
   # Create release notes
   cat > release-notes.md << EOF
 ## Firebase Tools v$NPM_VERSION
