@@ -38,8 +38,6 @@ jobs:
         with:
           context: .
           file: ${{ matrix.dockerfile }}
-          build-args: |
-            FIREBASE_VERSION=15.4.0
           push: false
           load: true
           tags: joinflux/firebase-action:test${{ matrix.suffix }}
